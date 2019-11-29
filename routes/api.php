@@ -13,14 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('manual/dirs', 'darkos\ManualDirController@index');
-
-Route::get('manual/interfaces', 'darkos\InterfaceManualController@index');
-Route::get('manual/interfaces/{interfaceManual}', 'darkos\InterfaceManualController@show');
-Route::post('manual/interfaces', 'darkos\InterfaceManualController@store');
-Route::put('manual/interfaces/{interfaceManual}', 'darkos\InterfaceManualController@update');
-Route::delete('manual/interfaces/{interfaceManual}', 'darkos\InterfaceManualController@destroy');
-
 //  登录
 Route::post('login', 'AuthenticationController@store');
 //  注销登录
@@ -29,4 +21,14 @@ Route::delete('logout', 'AuthenticationController@destroy');
 Route::middleware('refresh.token')->group(function () {
     //  我的登录信息
     Route::get('users/me', 'UserController@me');
+
+    //  三级目录列表
+    Route::get('manuals/dirs', 'darkos\ManualDirController@index');
+
+    //  - 接口文档
+    Route::get('manuals/interfaces', 'darkos\InterfaceManualController@index');
+    Route::get('manuals/interfaces/{interfaceManual}', 'darkos\InterfaceManualController@show');
+    Route::post('manuals/interfaces', 'darkos\InterfaceManualController@store');
+    Route::put('manuals/interfaces/{interfaceManual}', 'darkos\InterfaceManualController@update');
+    Route::delete('manuals/interfaces/{interfaceManual}', 'darkos\InterfaceManualController@destroy');
 });
