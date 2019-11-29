@@ -177,7 +177,8 @@ return [
 
         //  辅助函数
         App\Providers\HelperServiceProvider::class,
-
+        //  集合扩展宏方法
+        App\Providers\CollectionMacroServiceProvider::class,
     ],
 
     /*
