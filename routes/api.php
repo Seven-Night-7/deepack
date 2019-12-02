@@ -15,12 +15,12 @@ use Illuminate\Http\Request;
 
 //  登录
 Route::post('auths', 'AuthenticationController@store');
-//  注销登录
-Route::delete('auths', 'AuthenticationController@destroy');
 
 Route::middleware([
     'refresh.token',
 ])->group(function () {
+    //  注销登录
+    Route::delete('auths', 'AuthenticationController@destroy');
     //  我的登录信息
     Route::get('auths/me', 'AuthenticationController@me');
 
@@ -37,8 +37,17 @@ Route::middleware([
 
     //  - 接口文档
     Route::get('manuals/interfaces', 'darkos\InterfaceManualController@index');
-    Route::get('manuals/interfaces/{interfaceManual}', 'darkos\InterfaceManualController@show');
+    Route::get('manuals/interfaces/{interfaceManual}', 'darkos\InterfaceManualController@show')
+        ->where('interfaceManual', '[0-9]+');
     Route::post('manuals/interfaces', 'darkos\InterfaceManualController@store');
-    Route::put('manuals/interfaces/{interfaceManual}', 'darkos\InterfaceManualController@update');
-    Route::delete('manuals/interfaces/{interfaceManual}', 'darkos\InterfaceManualController@destroy');
+    Route::put('manuals/interfaces/{interfaceManual}', 'darkos\InterfaceManualController@update')
+        ->where('interfaceManual', '[0-9]+');
+    Route::delete('manuals/interfaces/{interfaceManual}', 'darkos\InterfaceManualController@destroy')
+        ->where('interfaceManual', '[0-9]+');
+
+    //  - 接口域名
+    Route::get('manuals/interfaces/hosts', 'darkos\InterfaceHostController@index');
+    Route::post('manuals/interfaces/hosts', 'darkos\InterfaceHostController@store');
+    Route::put('manuals/interfaces/hosts/{interfaceHost}', 'darkos\InterfaceHostController@update');
+    Route::delete('manuals/interfaces/hosts/{interfaceHost}', 'darkos\InterfaceHostController@destroy');
 });
