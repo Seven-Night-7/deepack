@@ -33,7 +33,9 @@ class InterfaceHttpController extends BaseController
                 break;
         }
 
-        $http = new HttpRequest(MethodType::getKey((int) $request->method_type), $request->host_address . $request->uri);
+        $http = new HttpRequest(MethodType::getKey((int) $request->method_type), $request->host_address . $request->uri, [
+            'Authorization' => $request->header('Authorization')
+        ]);
 
         $promise = $client->sendAsync($http, $data)->then(function ($response) {
             echo $response->getBody();
