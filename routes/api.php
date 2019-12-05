@@ -13,14 +13,16 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::resource('tests', 'darkos\TestController');
-
 //  登录
 Route::post('auths', 'AuthenticationController@store');
 
 Route::middleware([
     'refresh.token',
 ])->group(function () {
+
+    //  测试
+    Route::resource('tests', 'darkos\TestController');
+
     //  注销登录
     Route::delete('auths', 'AuthenticationController@destroy');
     //  我的登录信息
