@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::resource('tests', 'darkos\TestController');
+
 //  登录
 Route::post('auths', 'AuthenticationController@store');
 
@@ -50,4 +52,7 @@ Route::middleware([
     Route::post('manuals/interfaces/hosts', 'darkos\InterfaceHostController@store');
     Route::put('manuals/interfaces/hosts/{interfaceHost}', 'darkos\InterfaceHostController@update');
     Route::delete('manuals/interfaces/hosts/{interfaceHost}', 'darkos\InterfaceHostController@destroy');
+
+    //  发送Http请求
+    Route::post('manuals/interfaces/https', 'darkos\InterfaceHttpController@store');
 });

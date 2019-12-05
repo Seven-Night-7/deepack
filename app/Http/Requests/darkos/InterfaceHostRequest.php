@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\darkos;
+
+use App\Http\Requests\FormRequest;
 
 class InterfaceHostRequest extends FormRequest
 {

@@ -32,6 +32,7 @@ class InterfaceManualRequest extends FormRequest
 
                     'request_params' => 'array',
                     'request_params.*.name' => 'string',
+                    'request_params.*.value' => 'string',
                     'request_params.*.field_type' => Rule::in(FieldType::getValues()),
                     'request_params.*.desc' => 'string',
                     'request_params.*.is_required' => 'in:0,1',

@@ -18,6 +18,7 @@ class CreateInterfaceManualParamsTable extends Migration
             $table->unsignedInteger('manual_id')->comment('接口文档id');
             $table->unsignedTinyInteger('type')->comment('参数来源 1:请求 2:响应');
             $table->string('name')->comment('参数名');
+            $table->string('value')->nullable()->comment('参数案例值');
             $table->unsignedTinyInteger('field_type')->comment('类型 1:int 2:string');
             $table->string('desc')->nullable()->comment('说明');
             $table->unsignedTinyInteger('is_required')->default(0)->comment('是否必选');

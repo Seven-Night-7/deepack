@@ -4,7 +4,7 @@ namespace App\Http\Controllers\darkos;
 
 use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
-use App\Http\Requests\InterfaceHostRequest;
+use App\Http\Requests\darkos\InterfaceHostRequest;
 use App\Models\InterfaceHost;
 
 class InterfaceHostController extends BaseController
