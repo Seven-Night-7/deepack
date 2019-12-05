@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
 class Handler extends ExceptionHandler
 {
@@ -63,6 +64,11 @@ class Handler extends ExceptionHandler
         //  授权不通过异常处理，包含有：JWT认证
         if ($exception instanceof UnauthorizedHttpException) {
             return json_response($exception->getCode(), [], $exception->getMessage());
+        }
+
+        //  token不合法
+        if ($exception instanceof TokenInvalidException) {
+            return json_response(StatusCode::TOKEN_ERROR, [], $exception->getMessage());
         }
 
         return parent::render($request, $exception);
